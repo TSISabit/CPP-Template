@@ -224,6 +224,45 @@ void computeFactorials(int n, ll mod = MOD) {
     }
 }
 
+vector<int> prefixMinimum(const vector<int>& a) {
+    int n = a.size();
+    vector<int> pre(n);
+    pre[0] = a[0];
+    for (int i = 1; i < n; i++) {
+        pre[i] = min(pre[i - 1], a[i]);
+    }
+    return pre;
+}
+
+vector<int> suffixMinimum(const vector<int>& a) {
+    int n = a.size();
+    vector<int> suf(n);
+    suf[n - 1] = a[n - 1];
+    for (int i = n - 2; i >= 0; i--) {
+        suf[i] = min(suf[i + 1], a[i]);
+    }
+    return suf;
+}
+
+vector<int> prefixMaximum(const vector<int>& a) {
+    int n = a.size();
+    vector<int> pre(n);
+    pre[0] = a[0];
+    for (int i = 1; i < n; i++) {
+        pre[i] = max(pre[i - 1], a[i]);
+    }
+    return pre;
+}
+
+vector<int> suffixMaximum(const vector<int>& a) {
+    int n = a.size();
+    vector<int> suf(n);
+    suf[n - 1] = a[n - 1];
+    for (int i = n - 2; i >= 0; i--) {
+        suf[i] = max(suf[i + 1], a[i]);
+    }
+    return suf;
+}
 void Solve() {
     
 }
