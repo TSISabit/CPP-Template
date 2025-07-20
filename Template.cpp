@@ -20,7 +20,7 @@ using namespace std;
 #define rall(x) (x).rbegin(), (x).rend()
 #define yes cout << "YES" << endl;
 #define no cout << "NO" << endl;
-#define nx "\n"
+#define nn "\n"
 #define sz(x) (int)(x).size()
 #define gcd(a, b) __gcd(a, b)
 #define lcm(a, b) ((a) / gcd(a, b) * (b))
@@ -39,6 +39,7 @@ using namespace std;
 #define parity(x) __builtin_parityll(x)
 #define clz(x) __builtin_clzll(x)
 #define ctz(x) __builtin_ctzll(x)
+#define unq(v) v.resize(distance(v.begin(), unique(v.begin(), v.end())));
 
 #define pii pair<int, int>
 #define pll pair<ll, ll>
@@ -80,6 +81,18 @@ bool isPrime(ll n) {
    return true;
 }
 
+int binaryAsDecimal(int num)
+{
+int res = 0, base = 1;
+while (num > 0)
+{
+res += (num % 2) * base;
+base *= 10;
+num /= 2;
+}
+return res;
+}
+
 bool isPowerOfTwo(ll n) {
    return (n > 0 && (n & (n - 1)) == 0);
 }
@@ -95,7 +108,120 @@ ll binarySearch(ll low, ll high, function<bool(ll)> check) {
 
 void vectorPrint(vector<int>& v) {
    for (auto val : v) cout << val << ' ';
-   cout << nx;
+   cout << nn;
+}
+
+bool isSorted(const vector<int>& arr) {
+   for (int i = 1; i < arr.size(); ++i) {
+       if (arr[i] < arr[i - 1]) return false;
+   }
+   return true;
+}
+
+string intToBinary(int n){
+   if(n == 0) return "0";
+   string res = "";
+   while(n > 0){
+       res += (n % 2) + '0';
+       n /= 2;
+   }
+   reverse(res.begin(), res.end());
+   return res;
+}
+
+vector<int> prefixSum(const vector<int>& v) {
+    int n = v.size();
+    vector<int> pre(n);
+    pre[0] = v[0];
+    for (int i = 1; i < n; i++) {
+        pre[i] = pre[i - 1] + v[i];
+    }
+    return pre;
+}
+
+vector<int> suffixSum(const vector<int>& v) {
+    int n = v.size();
+    vector<int> suf(n);
+    suf[n - 1] = v[n - 1];
+    for (int i = n - 2; i >= 0; i--) {
+        suf[i] = suf[i + 1] + v[i];
+    }
+    return suf;
+}
+
+int arrayGCD(const vector<int>& v) {
+    int res = v[0];
+    for (int i = 1; i < v.size(); i++) {
+        res = gcd(res, v[i]);
+        if (res == 1) break;
+    }
+    return res;
+}
+
+int arrayLCM(const vector<int>& v) {
+    int res = v[0];
+    for (int i = 1; i < v.size(); i++) {
+        res = lcm(res, v[i]);
+    }
+    return res;
+}
+
+map<int, int> frequencyCount(const vector<int>& v) {
+    map<int, int> freq;
+    for (auto val : v) {
+        freq[val]++;
+    }
+    return freq;
+}
+
+map<char, int> charFrequency(const string& s) {
+    map<char, int> freq;
+    for (char c : s) {
+        freq[c]++;
+    }
+    return freq;
+}
+
+int mostFrequentElement(const vector<int>& v) {
+    map<int, int> freq;
+    int maxFreq = 0, mostFreq = v[0];
+    for (int val : v) {
+        freq[val]++;
+        if (freq[val] > maxFreq) {
+            maxFreq = freq[val];
+            mostFreq = val;
+        }
+    }
+    return mostFreq;
+}
+
+const int N = 1e6 + 5;
+bool is_prime[N];
+void sieve(){
+   fill(is_prime, is_prime + N, true);
+   is_prime[0] = is_prime[1] = false;
+   for(int i = 2; i * i < N; i++){
+       if(is_prime[i]){
+           for(int j = i * i; j < N; j += i){
+               is_prime[j] = false;
+           }
+       }
+   }
+}
+
+ll factorial(ll n) {
+    if (n == 0 || n == 1) return 1;
+    return n * factorial(n - 1);
+}
+
+const int MAXN = 2e5 + 5;
+ll fact[MAXN];
+
+void computeFactorials(int n, ll mod = MOD) {
+    fact[0] = 1;
+    for (int i = 1; i <= n; i++) {
+        fact[i] = (fact[i - 1] * i) % mod;
+    }
 }
 
 void Solve() {
