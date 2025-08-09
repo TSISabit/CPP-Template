@@ -29,10 +29,6 @@ using namespace std;
 #define rrep(i, a, b) for (int i = a; i >= b; i--)
 #define rep0(i, n) for (int i = 0; i < n; i++)
 #define rep1(i, n) for (int i = 1; i <= n; i++)
-#define debug(x) cout << #x << " = " << x << endl;
-#define dbg(x) cerr << #x << " = " << x << endl;
-#define dbg2(x, y) cerr << #x << " = " << x << ", " << #y << " = " << y << endl;
-#define dbgv(v) cerr << #v << " = ["; for (auto i : v) cerr << i << " "; cerr << "]\n";
 #define read(x) int x; cin >> x;
 #define readv(v, n) vector<int> v(n); for (auto &i : v) cin >> i;
 #define setbit(x) __builtin_popcountll(x)
@@ -73,13 +69,6 @@ ll modInv(ll a, ll mod = MOD) {
    return power(a, mod - 2, mod);
 }
 
-bool isPrime(ll n) {
-   if (n < 2) return false;
-   for (ll i = 2; i * i <= n; i++) {
-       if (n % i == 0) return false;
-   }
-   return true;
-}
 
 int binaryAsDecimal(int num)
 {
