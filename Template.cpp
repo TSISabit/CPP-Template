@@ -179,9 +179,8 @@ map<char, int> charFrequency(const string& s) {
 }
 
 const int MAXN = 1000000;
-int spf[MAXN + 1]; // Smallest Prime Factor array
+int spf[MAXN + 1];
 
-// Build SPF array (O(n log log n))
 void sieveSPF() {
     for (int i = 1; i <= MAXN; i++) spf[i] = i;
     for (int i = 2; i * i <= MAXN; i++) {
@@ -193,7 +192,6 @@ void sieveSPF() {
     }
 }
 
-// Prime Factorization using spf[] (O(log n))
 vector<int> getFactorization(int x) {
     vector<int> res;
     while (x != 1) {
@@ -235,7 +233,6 @@ ll factorial(ll n) {
     return n * factorial(n - 1);
 }
 
-const int MAXN = 2e5 + 5;
 ll fact[MAXN];
 
 void computeFactorials(int n, ll mod = MOD) {
