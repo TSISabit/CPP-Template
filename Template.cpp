@@ -72,13 +72,13 @@ ll modInv(ll a, ll mod = MOD) {
 
 int binaryAsDecimal(int num)
 {
-int res = 0, base = 1;
-while (num > 0)
-{
-res += (num % 2) * base;
-base *= 10;
-num /= 2;
-}
+   int res = 0, base = 1;
+   while (num > 0)
+   {
+       res += (num % 2) * base;
+       base *= 10;
+       num /= 2;
+   }
 return res;
 }
 
@@ -105,6 +105,13 @@ bool isSorted(const vector<int>& arr) {
        if (arr[i] < arr[i - 1]) return false;
    }
    return true;
+}
+
+bool isSortedDescending(const vector<int>& arr) {
+    for (int i = 1; i < (int)arr.size(); ++i) {
+        if (arr[i] > arr[i - 1]) return false;
+    }
+    return true;
 }
 
 string intToBinary(int n){
@@ -169,6 +176,31 @@ map<char, int> charFrequency(const string& s) {
         freq[c]++;
     }
     return freq;
+}
+
+const int MAXN = 1000000;
+int spf[MAXN + 1]; // Smallest Prime Factor array
+
+// Build SPF array (O(n log log n))
+void sieveSPF() {
+    for (int i = 1; i <= MAXN; i++) spf[i] = i;
+    for (int i = 2; i * i <= MAXN; i++) {
+        if (spf[i] == i) { // i is prime
+            for (int j = i * i; j <= MAXN; j += i) {
+                if (spf[j] == j) spf[j] = i;
+            }
+        }
+    }
+}
+
+// Prime Factorization using spf[] (O(log n))
+vector<int> getFactorization(int x) {
+    vector<int> res;
+    while (x != 1) {
+        res.push_back(spf[x]);
+        x /= spf[x];
+    }
+    return res;
 }
 
 int mostFrequentElement(const vector<int>& v) {
