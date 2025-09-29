@@ -69,17 +69,14 @@ ll modInv(ll a, ll mod = MOD) {
    return power(a, mod - 2, mod);
 }
 
-
-int binaryAsDecimal(int num)
-{
+int binaryAsDecimal(int num) {
    int res = 0, base = 1;
-   while (num > 0)
-   {
+   while (num > 0) {
        res += (num % 2) * base;
        base *= 10;
        num /= 2;
    }
-return res;
+   return res;
 }
 
 bool isPowerOfTwo(ll n) {
@@ -114,10 +111,10 @@ bool isSortedDescending(const vector<int>& arr) {
     return true;
 }
 
-string intToBinary(int n){
+string intToBinary(int n) {
    if(n == 0) return "0";
    string res = "";
-   while(n > 0){
+   while(n > 0) {
        res += (n % 2) + '0';
        n /= 2;
    }
@@ -184,7 +181,7 @@ int spf[MAXN + 1];
 void sieveSPF() {
     for (int i = 1; i <= MAXN; i++) spf[i] = i;
     for (int i = 2; i * i <= MAXN; i++) {
-        if (spf[i] == i) { // i is prime
+        if (spf[i] == i) {
             for (int j = i * i; j <= MAXN; j += i) {
                 if (spf[j] == j) spf[j] = i;
             }
@@ -199,6 +196,44 @@ vector<int> getFactorization(int x) {
         x /= spf[x];
     }
     return res;
+}
+
+int sumOfDivisors(int n) {
+    int ans = 1;
+    while (n > 1) {
+        int p = spf[n];
+        int cnt = 0;
+        while (n % p == 0) {
+            n /= p;
+            cnt++;
+        }
+        int term = 1, power = 1;
+        for (int i = 0; i < cnt; i++) {
+            power *= p;
+            term += power;
+        }
+        ans *= term;
+    }
+    return ans;
+}
+
+int numOfDivisors(int n) {
+    int ans = 1;
+    while (n > 1) {
+        int p = spf[n];
+        int cnt = 0;
+        while (n % p == 0) {
+            n /= p;
+            cnt++;
+        }
+        ans *= (cnt + 1);
+    }
+    return ans;
+}
+
+int productOfDivisors(int n) {
+    int d = numOfDivisors(n);
+    return power(n % MOD, d / 2, MOD);
 }
 
 int mostFrequentElement(const vector<int>& v) {
@@ -281,6 +316,7 @@ vector<int> suffixMaximum(const vector<int>& a) {
     }
     return suf;
 }
+
 void Solve() {
     
 }
