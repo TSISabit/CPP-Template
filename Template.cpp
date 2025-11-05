@@ -329,6 +329,16 @@ void computeTotient() {
        }
    }
 }
+int nthFibonacci(int n) {
+    if (n == 1 || n == 2) return 1;
+    int a = 1, b = 1, fib = 0;
+    for (int i = 3; i <= n; i++) {
+        fib = (a + b) % MOD; 
+        a = b;
+        b = fib;
+    }
+    return fib;
+}
 
 void Solve() {
     
