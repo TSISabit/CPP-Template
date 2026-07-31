@@ -1,5 +1,3 @@
-/*Bismillahir-Rahmanir Rahim
-Assalamualaikum
 /* ======================================
 Author    : TSI_Sabit
 Region    : Bangladesh
@@ -330,292 +328,211 @@ void computeTotient() {
    }
 }
 int nthFibonacci(int n) {
-    if (n == 1 || n == 2) return 1;
-    int a = 1, b = 1, fib = 0;
-    for (int i = 3; i <= n; i++) {
-        fib = (a + b) % MOD; 
-        a = b;
-        b = fib;
-    }
-    return fib;
+   if (n == 1 || n == 2) return 1;
+   int a = 1, b = 1, fib = 0;
+   for (int i = 3; i <= n; i++) {
+       fib = (a + b) % MOD; 
+       a = b;
+       b = fib;
+   }
+   return fib;
 }
-
 char mostFrequentCharacter(const string& s) {
-
-    map<char, int> freq;
-
-    for(char c : s)
-        freq[c]++;
-
-    char ans = s[0];
-    int mx = 0;
-
-    for(pair<char, int> p : freq) {
-
-        if(p.second > mx) {
-            mx = p.second;
-            ans = p.first;
-        }
-    }
-
-    return ans;
+   map<char, int> freq;
+   for(char c : s)
+       freq[c]++;
+   char ans = s[0];
+   int mx = 0;
+   for(pair<char, int> p : freq) {
+       if(p.second > mx) {
+           mx = p.second;
+           ans = p.first;
+       }
+   }
+   return ans;
 }
-
 int LCSLength(string a, string b) {
-    int n = a.size();
-    int m = b.size();
-
-    vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0));
-
-    for (int i = 1; i <= n; i++) {
-        for (int j = 1; j <= m; j++) {
-
-            if (a[i - 1] == b[j - 1]) {
-                dp[i][j] = dp[i - 1][j - 1] + 1;
-            }
-            else {
-                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
-            }
-        }
-    }
-
-    return dp[n][m];
+   int n = a.size();
+   int m = b.size();
+   vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0));
+   for (int i = 1; i <= n; i++) {
+       for (int j = 1; j <= m; j++) {
+           if (a[i - 1] == b[j - 1]) {
+               dp[i][j] = dp[i - 1][j - 1] + 1;
+           }
+           else {
+               dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+           }
+       }
+   }
+   return dp[n][m];
 }
 string LCS(string a, string b) {
-    int n = a.size();
-    int m = b.size();
-
-    vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0));
-
-    for (int i = 1; i <= n; i++) {
-        for (int j = 1; j <= m; j++) {
-
-            if (a[i - 1] == b[j - 1]) {
-                dp[i][j] = dp[i - 1][j - 1] + 1;
-            }
-            else {
-                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
-            }
-        }
-    }
-
-    string ans = "";
-
-    int i = n, j = m;
-
-    while (i > 0 && j > 0) {
-
-        if (a[i - 1] == b[j - 1]) {
-            ans += a[i - 1];
-            i--;
-            j--;
-        }
-        else if (dp[i - 1][j] > dp[i][j - 1]) {
-            i--;
-        }
-        else {
-            j--;
-        }
-    }
-
-    reverse(all(ans));
-
-    return ans;
+   int n = a.size();
+   int m = b.size();
+   vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0));
+   for (int i = 1; i <= n; i++) {
+       for (int j = 1; j <= m; j++) {
+           if (a[i - 1] == b[j - 1]) {
+               dp[i][j] = dp[i - 1][j - 1] + 1;
+           }
+           else {
+               dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+           }
+       }
+   }
+   string ans = "";
+   int i = n, j = m;
+   while (i > 0 && j > 0) {
+       if (a[i - 1] == b[j - 1]) {
+           ans += a[i - 1];
+           i--;
+           j--;
+       }
+       else if (dp[i - 1][j] > dp[i][j - 1]) {
+           i--;
+       }
+       else {
+           j--;
+       }
+   }
+   reverse(all(ans));
+   return ans;
 }
-
 int LongestCommonSubstring(string a, string b) {
-    int n = a.size();
-    int m = b.size();
-
-    vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0));
-
-    int ans = 0;
-
-    for(int i = 1; i <= n; i++) {
-        for(int j = 1; j <= m; j++) {
-
-            if(a[i - 1] == b[j - 1]) {
-                dp[i][j] = dp[i - 1][j - 1] + 1;
-                ans = max(ans, dp[i][j]);
-            }
-        }
-    }
-
-    return ans;
+   int n = a.size();
+   int m = b.size();
+   vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0));
+   int ans = 0;
+   for(int i = 1; i <= n; i++) {
+       for(int j = 1; j <= m; j++) {
+           if(a[i - 1] == b[j - 1]) {
+               dp[i][j] = dp[i - 1][j - 1] + 1;
+               ans = max(ans, dp[i][j]);
+           }
+       }
+   }
+   return ans;
 }
 int EditDistance(string a, string b) {
-    int n = a.size();
-    int m = b.size();
-
-    vector<vector<int>> dp(n + 1, vector<int>(m + 1));
-
-    for(int i = 0; i <= n; i++) dp[i][0] = i;
-    for(int j = 0; j <= m; j++) dp[0][j] = j;
-
-    for(int i = 1; i <= n; i++) {
-        for(int j = 1; j <= m; j++) {
-
-            if(a[i - 1] == b[j - 1])
-                dp[i][j] = dp[i - 1][j - 1];
-
-            else
-                dp[i][j] = 1 + min({
-                    dp[i - 1][j],
-                    dp[i][j - 1],
-                    dp[i - 1][j - 1]
-                });
-        }
-    }
-
-    return dp[n][m];
+   int n = a.size();
+   int m = b.size();
+   vector<vector<int>> dp(n + 1, vector<int>(m + 1));
+   for(int i = 0; i <= n; i++) dp[i][0] = i;
+   for(int j = 0; j <= m; j++) dp[0][j] = j;
+   for(int i = 1; i <= n; i++) {
+       for(int j = 1; j <= m; j++) {
+           if(a[i - 1] == b[j - 1])
+               dp[i][j] = dp[i - 1][j - 1];
+           else
+               dp[i][j] = 1 + min({
+                   dp[i - 1][j],
+                   dp[i][j - 1],
+                   dp[i - 1][j - 1]
+               });
+       }
+   }
+   return dp[n][m];
 }
 vector<int> buildLPS(string pat) {
-    int n = pat.size();
-
-    vector<int> lps(n);
-
-    int j = 0;
-
-    for(int i = 1; i < n; i++) {
-
-        while(j > 0 && pat[i] != pat[j])
-            j = lps[j - 1];
-
-        if(pat[i] == pat[j])
-            j++;
-
-        lps[i] = j;
-    }
-
-    return lps;
+   int n = pat.size();
+   vector<int> lps(n);
+   int j = 0;
+   for(int i = 1; i < n; i++) {
+       while(j > 0 && pat[i] != pat[j])
+           j = lps[j - 1];
+       if(pat[i] == pat[j])
+           j++;
+       lps[i] = j;
+   }
+   return lps;
 }
-
 vector<int> KMP(string text, string pat) {
-
-    vector<int> lps = buildLPS(pat);
-
-    vector<int> pos;
-
-    int j = 0;
-
-    for(int i = 0; i < text.size(); i++) {
-
-        while(j > 0 && text[i] != pat[j])
-            j = lps[j - 1];
-
-        if(text[i] == pat[j])
-            j++;
-
-        if(j == pat.size()) {
-            pos.pb(i - pat.size() + 1);
-            j = lps[j - 1];
-        }
-    }
-
-    return pos;
+   vector<int> lps = buildLPS(pat);
+   vector<int> pos;
+   int j = 0;
+   for(int i = 0; i < text.size(); i++) {
+       while(j > 0 && text[i] != pat[j])
+           j = lps[j - 1];
+       if(text[i] == pat[j])
+           j++;
+       if(j == pat.size()) {
+           pos.pb(i - pat.size() + 1);
+           j = lps[j - 1];
+       }
+   }
+   return pos;
 }
 vector<int> ZFunction(string s) {
-
-    int n = s.size();
-
-    vector<int> z(n);
-
-    int l = 0, r = 0;
-
-    for(int i = 1; i < n; i++) {
-
-        if(i <= r)
-            z[i] = min(r - i + 1, z[i - l]);
-
-        while(i + z[i] < n &&
-              s[z[i]] == s[i + z[i]])
-            z[i]++;
-
-        if(i + z[i] - 1 > r) {
-            l = i;
-            r = i + z[i] - 1;
-        }
-    }
-
-    return z;
+   int n = s.size();
+   vector<int> z(n);
+   int l = 0, r = 0;
+   for(int i = 1; i < n; i++) {
+       if(i <= r)
+           z[i] = min(r - i + 1, z[i - l]);
+       while(i + z[i] < n &&
+           s[z[i]] == s[i + z[i]])
+           z[i]++;
+       if(i + z[i] - 1 > r) {
+           l = i;
+           r = i + z[i] - 1;
+       }
+   }
+   return z;
 }
 struct DSU {
-
-    vector<int> parent, sz;
-
-    DSU(int n) {
-        parent.resize(n + 1);
-        sz.assign(n + 1, 1);
-
-        for(int i = 0; i <= n; i++)
-            parent[i] = i;
-    }
-
-    int find(int v) {
-
-        if(parent[v] == v)
-            return v;
-
-        return parent[v] =
-               find(parent[v]);
-    }
-
-    void unite(int a, int b) {
-
-        a = find(a);
-        b = find(b);
-
-        if(a != b) {
-
-            if(sz[a] < sz[b])
-                swap(a, b);
-
-            parent[b] = a;
-            sz[a] += sz[b];
-        }
-    }
+   vector<int> parent, sz;
+   DSU(int n) {
+       parent.resize(n + 1);
+       sz.assign(n + 1, 1);
+       for(int i = 0; i <= n; i++)
+           parent[i] = i;
+   }
+   int find(int v) {
+       if(parent[v] == v)
+           return v;
+       return parent[v] =
+           find(parent[v]);
+   }
+   void unite(int a, int b) {
+       a = find(a);
+       b = find(b);
+       if(a != b) {
+           if(sz[a] < sz[b])
+               swap(a, b);
+           parent[b] = a;
+           sz[a] += sz[b];
+       }
+   }
 };
-
-vector<int> dijkstra(int n,
-                     vector<vector<pair<int,int>>>& adj,
-                     int src) {
-
-    vector<int> dist(n + 1, LINF);
-
-    priority_queue<
-        pair<int,int>,
-        vector<pair<int,int>>,
-        greater<pair<int,int>>
-    > pq;
-
-    dist[src] = 0;
-
-    pq.push({0, src});
-
-    while(!pq.empty()) {
-
-        auto [d, u] = pq.top();
-        pq.pop();
-
-        if(d > dist[u])
-            continue;
-
-        for(auto [v, w] : adj[u]) {
-
-            if(dist[v] > dist[u] + w) {
-
-                dist[v] =
-                dist[u] + w;
-
-                pq.push({
-                    dist[v], v
-                });
-            }
-        }
-    }
-
-    return dist;
+vector<long long> dijkstra(int n, 
+   vector<vector<pair<int, int>>> &adj,
+   int src)
+   {
+   vector<long long> dist(n + 1, LINF);
+   priority_queue<pair<long long, int>,
+       vector<pair<long long, int>>,
+       greater<pair<long long, int>>> pq;
+   dist[src] = 0;
+   pq.push(make_pair(0LL, src));
+   while (!pq.empty()) {
+       long long d = pq.top().first;
+       int u = pq.top().second;
+       pq.pop();
+       if (d > dist[u])
+           continue;
+       for (int i = 0; i < (int)adj[u].size(); i++) {
+           int v = adj[u][i].first;
+           int w = adj[u][i].second;
+           if (dist[v] > dist[u] + w) {
+               dist[v] = dist[u] + w;
+               pq.push(make_pair(dist[v], v));
+           }
+       }
+   }
+   return dist;
 }
+
 void Solve() {
     
 }
