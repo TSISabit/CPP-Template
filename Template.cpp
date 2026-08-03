@@ -1,3 +1,5 @@
+/*Bismillahir-Rahmanir Rahim
+Assalamualaikum
 /* ======================================
 Author    : TSI_Sabit
 Region    : Bangladesh
@@ -485,17 +487,21 @@ struct DSU {
    DSU(int n) {
        parent.resize(n + 1);
        sz.assign(n + 1, 1);
-       for(int i = 0; i <= n; i++) parent[i] = i;
+       for(int i = 0; i <= n; i++)
+           parent[i] = i;
    }
    int find(int v) {
-       if(parent[v] == v) return v;
-       return parent[v] = find(parent[v]);
+       if(parent[v] == v)
+           return v;
+       return parent[v] =
+           find(parent[v]);
    }
    void unite(int a, int b) {
        a = find(a);
        b = find(b);
        if(a != b) {
-           if(sz[a] < sz[b])swap(a, b);
+           if(sz[a] < sz[b])
+               swap(a, b);
            parent[b] = a;
            sz[a] += sz[b];
        }
@@ -530,52 +536,46 @@ vector<long long> dijkstra(int n,
 }
 
 string decimalToBaseK(long long n, int base) {
-    if (n == 0) return "0";
-    string digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    string res = "";
-    while (n > 0) {
-        res += digits[n % base];
-        n /= base;
-    }
-    reverse(res.begin(), res.end());
-    return res;
+   if (n == 0) return "0";
+   string digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+   string res = "";
+   while (n > 0) {
+       res += digits[n % base];
+       n /= base;
+   }
+   reverse(res.begin(), res.end());
+   return res;
 }
 long long baseKToDecimal(string s, int base) {
-    long long value = 0;
-    for (char c : s) {
-        int digit;
-        if ('0' <= c && c <= '9') digit = c - '0';
-        else digit = c - 'A' + 10;
-        value = value * base + digit;
-    }
-    return value;
+   long long value = 0;
+   for (char c : s) {
+       int digit;
+       if ('0' <= c && c <= '9') digit = c - '0';
+       else digit = c - 'A' + 10;
+       value = value * base + digit;
+   }
+   return value;
 }
 string baseToBase(string number, int fromBase, int toBase) {
-    long long decimal = baseKToDecimal(number, fromBase);
-    return decimalToBaseK(decimal, toBase);
+   long long decimal = baseKToDecimal(number, fromBase);
+   return decimalToBaseK(decimal, toBase);
 }
 string convertBinaryToCustom(string binary, char zeroDigit, char oneDigit) {
-    for (char &c : binary) {
-        if (c == '0') c = zeroDigit;
-        else c = oneDigit;
-    }
-    return binary;
+   for (char &c : binary) {
+       if (c == '0') c = zeroDigit;
+       else c = oneDigit;
+   }
+   return binary;
 }
-
 string decimalToBinary(long long n) {
-
-    string s;
-
-    while (n > 0) {
-        s += char('0' + (n % 2));
-        n /= 2;
-    }
-
-    reverse(s.begin(), s.end());
-
-    return s;
+   string s;
+   while (n > 0) {
+       s += char('0' + (n % 2));
+       n /= 2;
+   }
+   reverse(s.begin(), s.end());
+   return s;
 }
-
 void Solve() {
     
 }
