@@ -561,6 +561,21 @@ string convertBinaryToCustom(string binary, char zeroDigit, char oneDigit) {
     }
     return binary;
 }
+
+string decimalToBinary(long long n) {
+
+    string s;
+
+    while (n > 0) {
+        s += char('0' + (n % 2));
+        n /= 2;
+    }
+
+    reverse(s.begin(), s.end());
+
+    return s;
+}
+
 void Solve() {
     
 }
